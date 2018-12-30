@@ -1,6 +1,6 @@
 {
-  "name": "ytake/hack-http-executor",
-  "description": "HTTP Handler",
+  "name": "nazg-hack/hack-http-executor",
+  "description": "HTTP Component and Emit Responses",
   "minimum-stability": "stable",
   "type": "library",
   "license": "MIT",
@@ -19,9 +19,10 @@
   ],
   "require": {
     "hhvm": ">=3.30",
+    "hhvm/hsl": "^3.30.0",
     "hhvm/hsl-experimental": "^3.30.2",
     "facebook/hack-http-request-response-interfaces": "^0.1",
-    "ytake/hack-http-server-request-handlers-interfaces": "^1.0.1"
+    "nazg/http-server-request-handler": "^0.1.0"
   },
   "require-dev": {
     "hhvm/hacktest": "^1.3",
@@ -31,7 +32,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Ytake\\HackHttpExecutor\\": "src/"
+      "Nazg\\HackHttpExecutor\\": "src/"
     }
   },
   "autoload-dev": {
