@@ -1,9 +1,9 @@
 <?hh // strict
 
 use type Ytake\Hungrr\ServerRequestFactory;
-use type Nazg\HackHttpExecutor\RequestHandleExecutor;
-use type Nazg\HackHttpExecutor\Emitter\SapiEmitter;
-use type Nazg\HackHttpExecutor\Emitter\EmitterStack;
+use type Nazg\HttpExecutor\RequestHandleExecutor;
+use type Nazg\HttpExecutor\Emitter\SapiEmitter;
+use type Nazg\HttpExecutor\Emitter\EmitterStack;
 use type Facebook\HackTest\HackTest;
 use namespace HH\Lib\Experimental\IO;
 

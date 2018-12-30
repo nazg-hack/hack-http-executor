@@ -15,7 +15,7 @@
  * Copyright (c) 2018-2019 Yuuki Takezawa
  *
  */
-namespace Nazg\HackHttpExecutor\Emitter;
+namespace Nazg\HttpExecutor\Emitter;
 
 use type HH\Lib\Experimental\IO\ReadHandle;
 use type Facebook\Experimental\Http\Message\ResponseInterface;

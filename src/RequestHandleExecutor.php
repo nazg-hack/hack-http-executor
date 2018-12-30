@@ -15,7 +15,7 @@
  * Copyright (c) 2018-2019 Yuuki Takezawa
  *
  */
-namespace Nazg\HackHttpExecutor;
+namespace Nazg\HttpExecutor;
 
 use type Facebook\Experimental\Http\Message\ServerRequestInterface;
 use type Nazg\Http\Server\RequestHandlerInterface;

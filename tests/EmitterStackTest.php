@@ -3,8 +3,8 @@
 use type Ytake\Hungrr\Response;
 use type Ytake\Hungrr\StatusCode;
 use type Ytake\Hungrr\Response\TextResponse;
-use type Nazg\HackHttpExecutor\Emitter\SapiEmitter;
-use type Nazg\HackHttpExecutor\Emitter\EmitterStack;
+use type Nazg\HttpExecutor\Emitter\SapiEmitter;
+use type Nazg\HttpExecutor\Emitter\EmitterStack;
 use type Facebook\HackTest\HackTest;
 use namespace HH\Lib\Experimental\IO;
 
