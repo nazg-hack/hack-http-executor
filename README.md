@@ -1,5 +1,7 @@
 # Nazg\HackHttpExecutor
 
+[![Build Status](https://travis-ci.org/nazg-hack/hack-http-executor.svg?branch=master)](https://travis-ci.org/nazg-hack/hack-http-executor)
+
 This library provides utilities for:
 
  - Emitting [Hack HTTP Request and Response Interfaces](https://github.com/hhvm/hack-http-request-response-interfaces) responses.
