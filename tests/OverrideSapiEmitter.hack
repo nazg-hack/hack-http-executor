@@ -1,4 +1,5 @@
-use type Nazg\HackHttpExecutor\Emitter\SapiEmitter;
+use type Nazg\HttpExecutor\Emitter\SapiEmitter;
+
 use namespace HH\Lib\Str;
 
 final class OverrideSapiEmitter extends SapiEmitter {

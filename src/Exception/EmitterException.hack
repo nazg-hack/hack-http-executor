@@ -13,7 +13,7 @@
  * Copyright (c) 2018-2019 Yuuki Takezawa
  *
  */
-namespace Nazg\HackHttpExecutor\Exception;
+namespace Nazg\HttpExecutor\Exception;
 
 use type RuntimeException;
 

@@ -1,5 +1,5 @@
 {
-  "name": "nazg-hack/hack-http-executor",
+  "name": "nazg-hack/http-executor",
   "description": "HTTP Component and Emit Responses",
   "minimum-stability": "stable",
   "type": "library",
@@ -33,7 +33,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Nazg\\HackHttpExecutor\\": "src/"
+      "Nazg\\HttpExecutor\\": "src/"
     }
   },
   "autoload-dev": {

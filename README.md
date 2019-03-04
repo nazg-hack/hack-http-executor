@@ -1,4 +1,6 @@
-# Nazg\HackHttpExecutor
+# Nazg\HttpExecutor
+
+[![Build Status](https://travis-ci.org/nazg-hack/http-executor.svg?branch=master)](https://travis-ci.org/nazg-hack/http-executor)
 
 This library provides utilities for:
 
@@ -14,7 +16,7 @@ HHVM 3.30.0 and above.
 ## Installation
 
 ```bash
-hhvm $(which composer) require nazg-hack/hack-http-executor
+hhvm $(which composer) require nazg-hack/http-executor
 ```
 
 ## Usage
@@ -23,8 +25,8 @@ hhvm $(which composer) require nazg-hack/hack-http-executor
 <?hh //strict
 
 use type Ytake\Hungrr\ServerRequestFactory;
-use type Nazg\HackHttpExecutor\RequestHandleExecutor;
-use type Nazg\HackHttpExecutor\Emitter\SapiEmitter;
+use type Nazg\HttpExecutor\RequestHandleExecutor;
+use type Nazg\HttpExecutor\Emitter\SapiEmitter;
 use namespace HH\Lib\Experimental\IO;
 
 <<__EntryPoint>>

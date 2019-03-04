@@ -13,10 +13,10 @@
  * Copyright (c) 2018-2019 Yuuki Takezawa
  *
  */
-namespace Nazg\HackHttpExecutor\Emitter;
+namespace Nazg\HttpExecutor\Emitter;
 
-use type Nazg\HackHttpExecutor\Emitter\EmitterInterface;
-use type Nazg\HackHttpExecutor\Exception\EmitterException;
+use type Nazg\HttpExecutor\Emitter\EmitterInterface;
+use type Nazg\HttpExecutor\Exception\EmitterException;
 use type Facebook\Experimental\Http\Message\ResponseInterface;
 use namespace HH\Lib\Str;
 
