@@ -1,5 +1,3 @@
-<?hh // strict
-
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -17,13 +15,21 @@
  */
 namespace Nazg\HttpExecutor\Emitter;
 
+use type SplStack;
 use type HH\Lib\Experimental\IO\ReadHandle;
 use type Facebook\Experimental\Http\Message\ResponseInterface;
 
-interface EmitterInterface {
+class EmitterStack extends SplStack<EmitterInterface> implements EmitterInterface {
 
   public function emit(
     ReadHandle $readHandle,
-    ResponseInterface $response,
-  ): bool;
+    ResponseInterface $response
+  ): bool {
+    foreach ($this as $emitter) {
+      if (false !== $emitter->emit($readHandle, $response)) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

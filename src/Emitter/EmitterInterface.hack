@@ -1,5 +1,3 @@
-<?hh // strict
-
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -15,16 +13,15 @@
  * Copyright (c) 2018-2019 Yuuki Takezawa
  *
  */
-namespace Nazg\HttpExecutor\Exception;
+namespace Nazg\HttpExecutor\Emitter;
 
-use type RuntimeException;
+use type HH\Lib\Experimental\IO\ReadHandle;
+use type Facebook\Experimental\Http\Message\ResponseInterface;
 
-final class EmitterException extends RuntimeException {
-  public static function forHeadersSent(): this {
-    return new self('Unable to emit response; headers already sent');
-  }
+interface EmitterInterface {
 
-  public static function forOutputSent(): this {
-    return new self('Output has been emitted previously; cannot emit response');
-  }
+  public function emit(
+    ReadHandle $readHandle,
+    ResponseInterface $response,
+  ): bool;
 }

@@ -1,5 +1,3 @@
-<?hh // strict
-
 use type Nazg\HttpExecutor\Emitter\SapiEmitter;
 
 use namespace HH\Lib\Str;
@@ -21,7 +19,7 @@ final class OverrideSapiEmitter extends SapiEmitter {
         'HTTP/%s %d%s',
         $version,
         $statusCode,
-        ($reasonPhrase ? ' ' . $reasonPhrase : '')
+        (!Str\is_empty($reasonPhrase) ? ' ' . $reasonPhrase : '')
       ),
       $replace,
       $statusCode,

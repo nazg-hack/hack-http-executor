@@ -1,5 +1,3 @@
-<?hh // strict
-
 use type Ytake\Hungrr\Response;
 use type Ytake\Hungrr\StatusCode;
 use type Ytake\Hungrr\Response\TextResponse;

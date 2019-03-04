@@ -1,5 +1,3 @@
-<?hh // strict
-
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -15,23 +13,16 @@
  * Copyright (c) 2018-2019 Yuuki Takezawa
  *
  */
-namespace Nazg\HttpExecutor\Emitter;
+namespace Nazg\HttpExecutor\Exception;
 
-use type SplStack;
-use type HH\Lib\Experimental\IO\ReadHandle;
-use type Facebook\Experimental\Http\Message\ResponseInterface;
+use type RuntimeException;
 
-class EmitterStack extends SplStack<EmitterInterface> implements EmitterInterface {
+final class EmitterException extends RuntimeException {
+  public static function forHeadersSent(): this {
+    return new self('Unable to emit response; headers already sent');
+  }
 
-  public function emit(
-    ReadHandle $readHandle,
-    ResponseInterface $response
-  ): bool {
-    foreach ($this as $emitter) {
-      if (false !== $emitter->emit($readHandle, $response)) {
-        return true;
-      }
-    }
-    return false;
+  public static function forOutputSent(): this {
+    return new self('Output has been emitted previously; cannot emit response');
   }
 }
