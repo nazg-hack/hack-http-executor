@@ -1,5 +1,3 @@
-<?hh // strict
-
 use type Nazg\Http\Server\RequestHandlerInterface;
 use type Facebook\Experimental\Http\Message\ServerRequestInterface;
 use type Facebook\Experimental\Http\Message\ResponseInterface;
