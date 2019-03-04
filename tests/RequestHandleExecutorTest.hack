@@ -1,5 +1,3 @@
-<?hh // strict
-
 use type Ytake\Hungrr\ServerRequestFactory;
 use type Nazg\HackHttpExecutor\RequestHandleExecutor;
 use type Nazg\HackHttpExecutor\Emitter\SapiEmitter;

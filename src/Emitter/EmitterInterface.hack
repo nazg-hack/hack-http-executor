@@ -1,5 +1,3 @@
-<?hh // strict
-
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -20,23 +18,10 @@ namespace Nazg\HackHttpExecutor\Emitter;
 use type HH\Lib\Experimental\IO\ReadHandle;
 use type Facebook\Experimental\Http\Message\ResponseInterface;
 
-class SapiEmitter implements EmitterInterface {
-  use SapiEmitterTrait;
+interface EmitterInterface {
 
   public function emit(
     ReadHandle $readHandle,
-    ResponseInterface $response
-  ): bool {
-    $this->assertNoPreviousOutput();
-    $this->emitHeaders($response);
-    $this->emitStatusLine($response);
-    $this->emitBody($readHandle);
-    return true;
-  }
-
-  private function emitBody(
-    ReadHandle $readHandle,
-  ): void {
-    echo $readHandle->rawReadBlocking();
-  }
+    ResponseInterface $response,
+  ): bool;
 }
