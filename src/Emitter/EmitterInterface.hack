@@ -24,4 +24,9 @@ interface EmitterInterface {
     ReadHandle $readHandle,
     ResponseInterface $response,
   ): bool;
+
+  public function emitAsync(
+    ReadHandle $readHandle,
+    ResponseInterface $response,
+  ): Awaitable<bool>;
 }

@@ -18,6 +18,7 @@ namespace Nazg\HttpExecutor\Emitter;
 use type SplStack;
 use type HH\Lib\Experimental\IO\ReadHandle;
 use type Facebook\Experimental\Http\Message\ResponseInterface;
+use namespace HH\Lib\Vec;
 
 class EmitterStack extends SplStack<EmitterInterface> implements EmitterInterface {
 
@@ -25,6 +26,18 @@ class EmitterStack extends SplStack<EmitterInterface> implements EmitterInterfac
     ReadHandle $readHandle,
     ResponseInterface $response
   ): bool {
+    foreach ($this as $emitter) {
+      if (false !== $emitter->emit($readHandle, $response)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public async function emitAsync(
+    ReadHandle $readHandle,
+    ResponseInterface $response
+  ): Awaitable<bool> {
     foreach ($this as $emitter) {
       if (false !== $emitter->emit($readHandle, $response)) {
         return true;

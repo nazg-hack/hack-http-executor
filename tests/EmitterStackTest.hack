@@ -100,4 +100,21 @@ final class EmitterStackTest extends HackTest {
         tuple('HTTP/1.1 202 Accepted', true, 202)
       ]);
   }
+
+  public async function testShouldEmitOutput(): Awaitable<void> {
+    $sapiEmmiter = new SapiEmitter();
+    $this->stack?->push($sapiEmmiter);
+    $this->stack?->push($sapiEmmiter);
+    list($readHandle, $writeHandle) = IO\pipe_non_disposable();
+    await $writeHandle->writeAsync('content');
+    await $writeHandle->closeAsync();
+    ob_start();
+    await $this->stack?->emitAsync(
+      $readHandle,
+      new Response($writeHandle, StatusCode::OK)
+    );
+    $out = ob_get_contents();
+    ob_end_clean();
+    expect($out)->toBeSame('content');
+  }
 }

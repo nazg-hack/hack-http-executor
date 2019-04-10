@@ -32,9 +32,27 @@ class SapiEmitter implements EmitterInterface {
     return true;
   }
 
+  public async function emitAsync(
+    ReadHandle $readHandle,
+    ResponseInterface $response
+  ): Awaitable<bool> {
+    $this->assertNoPreviousOutput();
+    await $this->emitHeadersAsync($response);
+    await $this->emitStatusLineAsync($response);
+    await $this->emitBodyAsync($readHandle);
+    return true;
+  }
+
   private function emitBody(
     ReadHandle $readHandle,
   ): void {
     echo $readHandle->rawReadBlocking();
+  }
+
+  private async function emitBodyAsync(
+    ReadHandle $readHandle,
+  ): Awaitable<void> {
+    $read = await $readHandle->readAsync();
+    echo $read;
   }
 }

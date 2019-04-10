@@ -23,7 +23,7 @@
     "hhvm/hsl-experimental": "^4.0",
     "hhvm/hhvm-autoload": "^2.0.0",
     "facebook/hack-http-request-response-interfaces": "^0.2",
-    "nazg/http-server-request-handler": "^0.2.0"
+    "nazg/http-server-request-handler": "^0.3.0"
   },
   "require-dev": {
     "hhvm/hacktest": "^1.4",
