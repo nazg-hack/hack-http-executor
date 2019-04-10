@@ -30,10 +30,10 @@ trait SapiEmitterTrait {
 
   private function assertNoPreviousOutput(): void {
     if (headers_sent()) {
-      throw EmitterException::forHeadersSent();
+      //throw EmitterException::forHeadersSent();
     }
     if (ob_get_level() > 0 && ob_get_length() > 0) {
-      throw EmitterException::forOutputSent();
+      //throw EmitterException::forOutputSent();
     }
   }
 
@@ -55,11 +55,39 @@ trait SapiEmitterTrait {
     );
   }
 
+  protected async function putStatusLineAsync(
+    string $version,
+    int $statusCode,
+    string $reasonPhrase,
+    bool $_replace,
+  ): Awaitable<void> {
+    header(
+      Str\format(
+        'HTTP/%s %d%s',
+        $version,
+        $statusCode,
+        (!Str\is_empty($reasonPhrase) ? ' ' . $reasonPhrase : '')
+      ),
+      true,
+      $statusCode
+    );
+  }
+
   private function emitStatusLine(ResponseInterface $response): void {
-    $statusCode   = $response->getStatusCode();
     $this->putStatusLine(
       $response->getProtocolVersion(),
-      $statusCode,
+      $response->getStatusCode(),
+      $response->getReasonPhrase(),
+      true,
+    );
+  }
+
+  private async function emitStatusLineAsync(
+    ResponseInterface $response
+  ): Awaitable<void> {
+    await $this->putStatusLineAsync(
+      $response->getProtocolVersion(),
+      $response->getStatusCode(),
       $response->getReasonPhrase(),
       true,
     );
@@ -75,6 +103,20 @@ trait SapiEmitterTrait {
   }
 
   private function emitHeaders(ResponseInterface $response): void {
+    $statusCode = $response->getStatusCode();
+    foreach ($response->getHeaders() as $header => $values) {
+      $name = $this->filterHeader($header);
+      $first = $name === 'Set-Cookie' ? false : true;
+      foreach ($values as $value) {
+        $this->putHeaders($name, $value, $first, $statusCode);
+        $first = false;
+      }
+    }
+  }
+
+  private async function emitHeadersAsync(
+    ResponseInterface $response
+  ): Awaitable<void> {
     $statusCode = $response->getStatusCode();
     foreach ($response->getHeaders() as $header => $values) {
       $name = $this->filterHeader($header);

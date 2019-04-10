@@ -1,5 +1,5 @@
 {
-  "name": "nazg-hack/http-executor",
+  "name": "nazg/http-executor",
   "description": "HTTP Component and Emit Responses",
   "minimum-stability": "stable",
   "type": "library",
@@ -23,13 +23,13 @@
     "hhvm/hsl-experimental": "^4.0",
     "hhvm/hhvm-autoload": "^2.0.0",
     "facebook/hack-http-request-response-interfaces": "^0.2",
-    "nazg/http-server-request-handler": "^0.2.0"
+    "nazg/http-server-request-handler": "^0.3.0"
   },
   "require-dev": {
     "hhvm/hacktest": "^1.4",
     "facebook/fbexpect": "^2.5.2",
     "hhvm/hhast": "^4.0.0",
-    "ytake/hungrr": "^0.3.0"
+    "ytake/hungrr": "^0.3.1"
   },
   "autoload": {
     "psr-4": {
