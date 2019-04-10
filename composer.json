@@ -1,5 +1,5 @@
 {
-  "name": "nazg-hack/http-executor",
+  "name": "nazg/http-executor",
   "description": "HTTP Component and Emit Responses",
   "minimum-stability": "stable",
   "type": "library",
