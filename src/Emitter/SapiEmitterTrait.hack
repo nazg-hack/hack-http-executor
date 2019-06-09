@@ -30,10 +30,10 @@ trait SapiEmitterTrait {
 
   private function assertNoPreviousOutput(): void {
     if (headers_sent()) {
-      //throw EmitterException::forHeadersSent();
+      throw EmitterException::forHeadersSent();
     }
     if (ob_get_level() > 0 && ob_get_length() > 0) {
-      //throw EmitterException::forOutputSent();
+      throw EmitterException::forOutputSent();
     }
   }
 
