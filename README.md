@@ -11,7 +11,7 @@ Inspired by [zend-httphandlerrunner](https://github.com/zendframework/zend-httph
 
 ## Require
 
-HHVM 3.30.0 and above.
+HHVM 4.0 and above.
 
 ## Installation
 
