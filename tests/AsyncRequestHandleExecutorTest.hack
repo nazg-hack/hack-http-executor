@@ -1,6 +1,5 @@
 use type Ytake\Hungrr\ServerRequestFactory;
 use type Nazg\HttpExecutor\AsyncRequestHandleExecutor;
-use type Nazg\HttpExecutor\Emitter\SapiEmitter;
 use type Nazg\HttpExecutor\Emitter\EmitterStack;
 use type Facebook\HackTest\HackTest;
 use namespace HH\Lib\Experimental\IO;

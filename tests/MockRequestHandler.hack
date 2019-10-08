@@ -1,8 +1,9 @@
 use type Nazg\Http\Server\RequestHandlerInterface;
-use type Facebook\Experimental\Http\Message\ServerRequestInterface;
-use type Facebook\Experimental\Http\Message\ResponseInterface;
-use type Ytake\Hungrr\Response;
-use type Ytake\Hungrr\StatusCode;
+use type Facebook\Experimental\Http\Message\{
+  ResponseInterface,
+  ServerRequestInterface,
+};
+use type Ytake\Hungrr\{Response, StatusCode};
 use namespace HH\Lib\Experimental\IO;
 use function json_encode;
 

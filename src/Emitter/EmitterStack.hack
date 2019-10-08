@@ -18,7 +18,6 @@ namespace Nazg\HttpExecutor\Emitter;
 use type SplStack;
 use type HH\Lib\Experimental\IO\ReadHandle;
 use type Facebook\Experimental\Http\Message\ResponseInterface;
-use namespace HH\Lib\Vec;
 
 class EmitterStack extends SplStack<EmitterInterface> implements EmitterInterface {
 

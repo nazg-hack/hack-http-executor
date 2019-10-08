@@ -11,19 +11,17 @@ Inspired by [zend-httphandlerrunner](https://github.com/zendframework/zend-httph
 
 ## Require
 
-HHVM 4.0 and above.
+HHVM 4.20.0 and above.
 
 ## Installation
 
 ```bash
-hhvm $(which composer) require nazg-hack/http-executor
+$ composer require nazg-hack/http-executor
 ```
 
 ## Usage
 
 ```hack
-<?hh //strict
-
 use type Ytake\Hungrr\ServerRequestFactory;
 use type Nazg\HttpExecutor\RequestHandleExecutor;
 use type Nazg\HttpExecutor\Emitter\SapiEmitter;
