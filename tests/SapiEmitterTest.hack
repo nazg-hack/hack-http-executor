@@ -11,7 +11,7 @@ final class SapiEmitterTest extends HackTest {
 
   public async function testShouldAsync(): Awaitable<void> {
     $sapi = new SapiEmitter();
-    list($readHandle, $writeHandle) = IO\pipe_non_disposable();
+    list($readHandle, $writeHandle) = IO\pipe_nd();
     await $writeHandle->writeAsync('async content');
     await $writeHandle->closeAsync();
     ob_start();

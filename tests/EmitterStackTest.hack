@@ -20,7 +20,7 @@ final class EmitterStackTest extends HackTest {
   public function testShouldEmitTrue(): void {
     $sapiEmmiter = new SapiEmitter();
     $this->stack?->push($sapiEmmiter);
-    list($readHandle, $writeHandle) = IO\pipe_non_disposable();
+    list($readHandle, $writeHandle) = IO\pipe_nd();
     ob_start();
     $result = $this->stack?->emit(
       $readHandle,
@@ -33,10 +33,10 @@ final class EmitterStackTest extends HackTest {
   public function testShouldReturnMessageBody(): void {
     $sapiEmmiter = new SapiEmitter();
     $this->stack?->push($sapiEmmiter);
-    list($readHandle, $writeHandle) = IO\pipe_non_disposable();
+    list($readHandle, $writeHandle) = IO\pipe_nd();
     $writeHandle->rawWriteBlocking('content');
     ob_start();
-    $result = $this->stack?->emit(
+    $_ = $this->stack?->emit(
       $readHandle,
       new Response($writeHandle, StatusCode::OK)
     );
@@ -48,11 +48,11 @@ final class EmitterStackTest extends HackTest {
   public function testEmitsResponseHeaders(): void {
     $sapiEmmiter = new OverrideSapiEmitter();
     $this->stack?->push($sapiEmmiter);
-    list($readHandle, $writeHandle) = IO\pipe_non_disposable();
+    list($readHandle, $writeHandle) = IO\pipe_nd();
     $writeHandle->rawWriteBlocking('content');
     $response = new TextResponse($writeHandle, StatusCode::OK);
     ob_start();
-    $result = $this->stack?->emit(
+    $_ = $this->stack?->emit(
       $readHandle,
       $response
     );
@@ -60,12 +60,12 @@ final class EmitterStackTest extends HackTest {
     ob_end_clean();
     expect($out)->toBeSame('content');
     list($header, $_, $_) = $sapiEmmiter->getPutHeaders()[0];
-    expect($header)->toContain('Content-Type: text/plain');
+    expect($header)->toContainSubstring('Content-Type: text/plain');
   }
 
   public function testMultipleSetCookieHeadersAreNotReplaced(): void {
     $sapiEmmiter = new OverrideSapiEmitter();
-    list($readHandle, $writeHandle) = IO\pipe_non_disposable();
+    list($readHandle, $writeHandle) = IO\pipe_nd();
     $sapiEmmiter->emit($readHandle, (new Response($writeHandle))
       ->withStatus(200)
       ->withAddedHeader('Set-Cookie', vec['foo=bar', 'bar=baz']));
@@ -78,16 +78,12 @@ final class EmitterStackTest extends HackTest {
 
   public function testDoesNotLetResponseCodeBeOverriddenByHack(): void {
     $sapiEmmiter = new OverrideSapiEmitter();
-    list($readHandle, $writeHandle) = IO\pipe_non_disposable();
+    list($readHandle, $writeHandle) = IO\pipe_nd();
     $response = (new Response($writeHandle))
       ->withStatus(StatusCode::ACCEPTED)
       ->withAddedHeader('Location', vec['http://api.my-service.com/12345678'])
       ->withAddedHeader('Content-Type', vec['text/plain']);
     $sapiEmmiter->emit($readHandle, $response);
-    $expectedStack = vec[
-      tuple('Location: http://api.my-service.com/12345678', true, 202),
-      tuple('Content-Type: text/plain', true, 202),
-    ];
     expect($sapiEmmiter->getPutHeaders())
       ->toBeSame(vec[
         tuple('Location: http://api.my-service.com/12345678', true, 202),
@@ -103,7 +99,7 @@ final class EmitterStackTest extends HackTest {
     $sapiEmmiter = new SapiEmitter();
     $this->stack?->push($sapiEmmiter);
     $this->stack?->push($sapiEmmiter);
-    list($readHandle, $writeHandle) = IO\pipe_non_disposable();
+    list($readHandle, $writeHandle) = IO\pipe_nd();
     await $writeHandle->writeAsync('content');
     await $writeHandle->closeAsync();
     ob_start();

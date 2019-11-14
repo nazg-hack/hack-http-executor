@@ -13,7 +13,7 @@ final class AsyncRequestHandleExecutorTest extends HackTest {
   public async function testShouldReturnNullStackEmitter(): Awaitable<void> {
     $stack = new EmitterStack();
     $stack->push(new OverrideSapiEmitter());
-    list($readHandle, $writeHandle) = IO\pipe_non_disposable();
+    list($readHandle, $writeHandle) = IO\pipe_nd();
     $executor = new AsyncRequestHandleExecutor(
       $readHandle,
       $writeHandle,
