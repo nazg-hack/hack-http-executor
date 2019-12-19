@@ -13,8 +13,7 @@ final class MockAsyncRequestHandler implements AsyncRequestHandlerInterface {
     IO\WriteHandle $handle,
     ServerRequestInterface $_request
   ): Awaitable<ResponseInterface> {
-    await $handle->writeAsync(json_encode(dict[]));
-    if($handle is IO\NonDisposableHandle) {
+    if($handle is IO\CloseableHandle) {
       await $handle->closeAsync();
     }
     return new Response($handle, StatusCode::OK);
