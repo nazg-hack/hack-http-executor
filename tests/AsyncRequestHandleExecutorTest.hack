@@ -28,6 +28,6 @@ final class AsyncRequestHandleExecutorTest extends HackTest {
     expect($result)->toBeNull();
     $out = ob_get_contents();
     ob_end_clean();
-    expect($out)->toBeSame('{}');
+    expect($out)->toBeSame('');
   }
 }
