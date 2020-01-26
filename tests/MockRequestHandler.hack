@@ -13,7 +13,7 @@ final class MockRequestHandler implements RequestHandlerInterface {
     IO\WriteHandle $handle,
     ServerRequestInterface $_request
   ): ResponseInterface {
-    $handle->rawWriteBlocking(json_encode([]));
+    $handle->rawWriteBlocking(json_encode(dict[]));
     return new Response($handle, StatusCode::OK);
   }
 }
