@@ -23,13 +23,13 @@
     "hhvm/hsl-experimental": "^4.37",
     "hhvm/hhvm-autoload": "^3.0",
     "facebook/hack-http-request-response-interfaces": "^0.2",
-    "nazg/http-server-request-handler": "^0.3.0"
+    "nazg/http-server-request-handler": "^0.4"
   },
   "require-dev": {
     "hhvm/hacktest": "^2.0",
     "facebook/fbexpect": "^2.7",
     "hhvm/hhast": "^4.0",
-    "ytake/hungrr": "^0.8"
+    "ytake/hungrr": "^0.9"
   },
   "autoload": {
     "psr-4": {
