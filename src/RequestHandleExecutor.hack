@@ -23,7 +23,7 @@ class RequestHandleExecutor {
 
   public function __construct(
     private IO\ReadHandle $readHandle,
-    private IO\WriteHandle $writeHandle,
+    private IO\CloseableWriteHandle $writeHandle,
     private RequestHandlerInterface $handler,
     private Emitter\EmitterInterface $emitter,
     private ServerRequestInterface $serverRequestFactory
