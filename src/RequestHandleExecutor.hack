@@ -17,7 +17,7 @@ namespace Nazg\HttpExecutor;
 
 use type Facebook\Experimental\Http\Message\ServerRequestInterface;
 use type Nazg\Http\Server\RequestHandlerInterface;
-use namespace HH\Lib\Experimental\IO;
+use namespace HH\Lib\IO;
 
 class RequestHandleExecutor {
 

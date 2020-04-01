@@ -15,7 +15,7 @@
  */
 namespace Nazg\HttpExecutor\Emitter;
 
-use type HH\Lib\Experimental\IO\ReadHandle;
+use type HH\Lib\IO\ReadHandle;
 use type Facebook\Experimental\Http\Message\ResponseInterface;
 
 interface EmitterInterface {

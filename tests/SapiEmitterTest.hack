@@ -1,7 +1,7 @@
 use type Ytake\Hungrr\{Response, StatusCode};
 use type Nazg\HttpExecutor\Emitter\SapiEmitter;
 use type Facebook\HackTest\HackTest;
-use namespace HH\Lib\Experimental\IO;
+use namespace HH\Lib\IO;
 
 use function Facebook\FBExpect\expect;
 use function ob_start;

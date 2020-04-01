@@ -4,7 +4,7 @@ use type Facebook\Experimental\Http\Message\{
   ServerRequestInterface,
 };
 use type Ytake\Hungrr\{Response, StatusCode};
-use namespace HH\Lib\Experimental\IO;
+use namespace HH\Lib\IO;
 use function json_encode;
 
 final class MockAsyncRequestHandler implements AsyncRequestHandlerInterface {

@@ -2,7 +2,7 @@ use type Ytake\Hungrr\{Response, StatusCode};
 use type Ytake\Hungrr\Response\TextResponse;
 use type Nazg\HttpExecutor\Emitter\{EmitterStack, SapiEmitter};
 use type Facebook\HackTest\HackTest;
-use namespace HH\Lib\Experimental\IO;
+use namespace HH\Lib\IO;
 
 use function Facebook\FBExpect\expect;
 use function ob_start;
