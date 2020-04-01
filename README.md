@@ -11,7 +11,7 @@ Inspired by [zend-httphandlerrunner](https://github.com/zendframework/zend-httph
 
 ## Require
 
-HHVM 4.20.0 and above.
+HHVM 4.41.0 and above.
 
 ## Installation
 
@@ -25,11 +25,11 @@ $ composer require nazg-hack/http-executor
 use type Ytake\Hungrr\ServerRequestFactory;
 use type Nazg\HttpExecutor\RequestHandleExecutor;
 use type Nazg\HttpExecutor\Emitter\SapiEmitter;
-use namespace HH\Lib\Experimental\IO;
+use namespace HH\Lib\IO;
 
 <<__EntryPoint>>
 function main(): noreturn {
-  list($readHandle, $writeHandle) = IO\pipe_non_disposable();
+  list($readHandle, $writeHandle) = IO\pipe_nd();
   $executor = new RequestHandleExecutor(
     $readHandle,
     $writeHandle,
