@@ -46,7 +46,7 @@ class SapiEmitter implements EmitterInterface {
   private function emitBody(
     ReadHandle $readHandle,
   ): void {
-    echo $readHandle->rawReadBlocking();
+    echo $readHandle->read();
   }
 
   private async function emitBodyAsync(
