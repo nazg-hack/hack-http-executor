@@ -20,7 +20,7 @@ final class EmitterStackTest extends HackTest {
   public function testShouldEmitTrue(): void {
     $sapiEmmiter = new SapiEmitter();
     $this->stack->push($sapiEmmiter);
-    list($readHandle, $writeHandle) = IO\pipe_nd();
+    list($readHandle, $writeHandle) = IO\pipe();
     $writeHandle->write('testing');
     ob_start();
     $result = $this->stack->emit(
@@ -34,7 +34,7 @@ final class EmitterStackTest extends HackTest {
   public function testShouldReturnMessageBody(): void {
     $sapiEmmiter = new SapiEmitter();
     $this->stack->push($sapiEmmiter);
-    list($readHandle, $writeHandle) = IO\pipe_nd();
+    list($readHandle, $writeHandle) = IO\pipe();
     $writeHandle->write('content');
     ob_start();
     $_ = $this->stack->emit(
@@ -49,7 +49,7 @@ final class EmitterStackTest extends HackTest {
   public function testEmitsResponseHeaders(): void {
     $sapiEmmiter = new OverrideSapiEmitter();
     $this->stack->push($sapiEmmiter);
-    list($readHandle, $writeHandle) = IO\pipe_nd();
+    list($readHandle, $writeHandle) = IO\pipe();
     $writeHandle->write('content');
     $response = new TextResponse($writeHandle, StatusCode::OK);
     ob_start();
@@ -66,9 +66,9 @@ final class EmitterStackTest extends HackTest {
 
   public async function testMultipleSetCookieHeadersAreNotReplaced(): Awaitable<void> {
     $sapiEmmiter = new OverrideSapiEmitter();
-    list($readHandle, $writeHandle) = IO\pipe_nd();
+    list($readHandle, $writeHandle) = IO\pipe();
     await $writeHandle->writeAsync('');
-    await $writeHandle->closeAsync();
+    $writeHandle->close();
     $sapiEmmiter->emit($readHandle, (new Response($writeHandle))
       ->withStatus(200)
       ->withAddedHeader('Set-Cookie', vec['foo=bar', 'bar=baz']));
@@ -81,9 +81,9 @@ final class EmitterStackTest extends HackTest {
 
   public async function testDoesNotLetResponseCodeBeOverriddenByHack(): Awaitable<void> {
     $sapiEmmiter = new OverrideSapiEmitter();
-    list($readHandle, $writeHandle) = IO\pipe_nd();
+    list($readHandle, $writeHandle) = IO\pipe();
     await $writeHandle->writeAsync('');
-    await $writeHandle->closeAsync();
+    $writeHandle->close();
     $response = (new Response($writeHandle))
       ->withStatus(StatusCode::ACCEPTED)
       ->withAddedHeader('Location', vec['http://api.my-service.com/12345678'])
@@ -104,9 +104,9 @@ final class EmitterStackTest extends HackTest {
     $sapiEmmiter = new SapiEmitter();
     $this->stack->push($sapiEmmiter);
     $this->stack->push($sapiEmmiter);
-    list($readHandle, $writeHandle) = IO\pipe_nd();
+    list($readHandle, $writeHandle) = IO\pipe();
     await $writeHandle->writeAsync('content');
-    await $writeHandle->closeAsync();
+    $writeHandle->close();
     ob_start();
     await $this->stack->emitAsync(
       $readHandle,

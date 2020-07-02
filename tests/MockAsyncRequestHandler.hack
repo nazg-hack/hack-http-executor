@@ -14,7 +14,7 @@ final class MockAsyncRequestHandler implements AsyncRequestHandlerInterface {
     ServerRequestInterface $_request
   ): Awaitable<ResponseInterface> {
     if($handle is IO\CloseableHandle) {
-      await $handle->closeAsync();
+      $handle->close();
     }
     return new Response($handle, StatusCode::OK);
   }

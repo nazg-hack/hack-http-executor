@@ -13,7 +13,7 @@ final class RequestHandleExecutorTest extends HackTest {
   public function testShouldReturnNullStackEmitter(): void {
     $stack = new EmitterStack();
     $stack->push(new OverrideSapiEmitter());
-    list($readHandle, $writeHandle) = IO\pipe_nd();
+    list($readHandle, $writeHandle) = IO\pipe();
     $executor = new RequestHandleExecutor(
       $readHandle,
       $writeHandle,
@@ -28,7 +28,7 @@ final class RequestHandleExecutorTest extends HackTest {
   }
 
   public function testShouldReturnNullSapiEmitter(): void {
-    list($readHandle, $writeHandle) = IO\pipe_nd();
+    list($readHandle, $writeHandle) = IO\pipe();
     $executor = new RequestHandleExecutor(
       $readHandle,
       $writeHandle,
